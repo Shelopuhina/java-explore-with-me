@@ -292,13 +292,6 @@ public class EventServiceImpl implements EventService {
 
     @Transactional
     public long getViews(Event event) {
-       /* ObjectMapper objectMapper = new ObjectMapper();
-        ResponseEntity<Object> response = statsClient.getStats( event.getPublishedOn(), LocalDateTime.now(), Collections.singletonList(String.format("/events/%s", event.getId())), false);
-        List<ViewStatResponseDto> viewStatsList = objectMapper.convertValue(response.getBody(), new TypeReference<>() {
-        });
-        return (long) viewStatsList.size();*/
-
-
         if (!event.getState().equals(EventState.PUBLISHED)) return 0;
         ResponseEntity<Object> response = statsClient.getStats(
                 event.getPublishedOn(),
