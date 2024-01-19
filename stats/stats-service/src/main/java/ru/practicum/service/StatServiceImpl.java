@@ -2,6 +2,7 @@ package ru.practicum.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.practicum.exceptions.DateExc;
 import ru.practicum.mapper.StatsMapper;
 import ru.practicum.model.ViewStats;
 import ru.practicum.repository.StatsRepository;
@@ -9,6 +10,7 @@ import ru.practicum.statsDto.ViewStatRequestDto;
 import ru.practicum.statsDto.ViewStatResponseDto;
 
 
+import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,6 +31,8 @@ public class StatServiceImpl implements StatService {
     @Override
     public List<ViewStatResponseDto> getStats(LocalDateTime start, LocalDateTime end, List<String> uris, boolean unique) {
         List<ViewStats> result;
+        if (end.isBefore(start))
+            throw new DateExc("Нарушение временного интервала");
         if (unique) {
             if (uris == null) {
                 result = statsRepository.getStatsUniqueWithoutUris(start, end);
