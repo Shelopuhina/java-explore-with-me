@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import ru.practicum.compilation.model.Compilation;
 
 import java.util.List;
+
 @Repository
 public interface CompilationRepository extends JpaRepository<Compilation, Integer> {
     @Query("SELECT c FROM Compilation AS c WHERE (c.pinned = :pinned OR :pinned = null)")

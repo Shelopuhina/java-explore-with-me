@@ -11,6 +11,6 @@ import java.util.List;
 @Getter
 @Setter
 public class EventRequestStatusUpdateRequest {
-        private final List<Integer> requestIds;
-        private final EventRequestStatus status;
+    private final List<Integer> requestIds;
+    private final EventRequestStatus status;
 }

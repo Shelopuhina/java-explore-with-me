@@ -17,7 +17,9 @@ public interface EventService {
     EventFullDto addEvent(Integer userId, NewEventDto newEventDto);
 
     EventFullDto updateEventByAdmin(Integer eventId, UpdateEventAdminRequest updateRequest);
+
     EventFullDto updateEventByInitiator(Integer initiatorId, Integer eventId, UpdateEventUserRequest updateEventUserRequest);
+
     EventFullDto getEventById(Integer id, HttpServletRequest request);
 
     List<EventShortDto> getEvents(String text,
@@ -31,6 +33,7 @@ public interface EventService {
                                   Integer size,
                                   HttpServletRequest request
     );
+
     List<EventShortDto> getEventsByInitiatorId(Integer initiatorId, Integer from, Integer size);
 
     EventFullDto getEventByIdAndInitiatorId(Integer initiatorId, Integer eventId);

@@ -40,7 +40,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -196,7 +195,7 @@ public class EventServiceImpl implements EventService {
         List<Event> list = eventRepository.findEventsAdmin(users, states, categories, rangeStart, rangeEnd, pageable);
         List<EventFullDto> list2 = new ArrayList<>();
         for (Event event : list) {
-            EventFullDto event2  =EventMapper.eventToFullDto(event, getConfirmed(event), getViews(event));
+            EventFullDto event2 = EventMapper.eventToFullDto(event, getConfirmed(event), getViews(event));
             list2.add(event2);
         }
         return list2;
@@ -247,6 +246,7 @@ public class EventServiceImpl implements EventService {
         }
         return EventMapper.eventToFullDto(eventRepository.save(event), 0, 0L);
     }
+
     @Transactional
     public void updateEvent(
             Event event,
@@ -275,6 +275,7 @@ public class EventServiceImpl implements EventService {
         if (requestModeration != null) event.setRequestModeration(requestModeration);
         if (title != null) event.setTitle(title);
     }
+
     @Transactional
     public void saveHit(HttpServletRequest request) {
         ViewStatRequestDto viewStatRequestDto = ViewStatRequestDto.builder()
@@ -288,6 +289,7 @@ public class EventServiceImpl implements EventService {
         if (!response.getStatusCode().is2xxSuccessful())
             throw new StatsServiceCreationException("Запись в сервис статистики не сохранилась");
     }
+
     @Transactional
     public long getViews(Event event) {
        /* ObjectMapper objectMapper = new ObjectMapper();
@@ -295,7 +297,6 @@ public class EventServiceImpl implements EventService {
         List<ViewStatResponseDto> viewStatsList = objectMapper.convertValue(response.getBody(), new TypeReference<>() {
         });
         return (long) viewStatsList.size();*/
-
 
 
         if (!event.getState().equals(EventState.PUBLISHED)) return 0;
@@ -310,6 +311,7 @@ public class EventServiceImpl implements EventService {
         });
         return (statsDto.isEmpty()) ? 0 : statsDto.get(0).getHits();
     }
+
     @Transactional
     public int getConfirmed(Event event) {
         return (event.getState().equals(EventState.PUBLISHED)) ?

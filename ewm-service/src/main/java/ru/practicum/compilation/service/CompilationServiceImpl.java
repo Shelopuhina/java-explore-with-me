@@ -1,4 +1,5 @@
 package ru.practicum.compilation.service;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.PageRequest;
@@ -55,7 +56,7 @@ public class CompilationServiceImpl implements CompilationService {
             List<Event> events = (ids == null) ? Collections.emptyList() : eventRepository.findAllById(ids);
             if (newCompilationDto.getPinned() == null) newCompilationDto.setPinned(false);
             Compilation compilation = compilationRepository.save(
-                   CompilationMapper.compilationFromNewDto(newCompilationDto, Set.copyOf(events))
+                    CompilationMapper.compilationFromNewDto(newCompilationDto, Set.copyOf(events))
             );
             return CompilationMapper.compilationToDto(compilation);
         } catch (DataIntegrityViolationException e) {

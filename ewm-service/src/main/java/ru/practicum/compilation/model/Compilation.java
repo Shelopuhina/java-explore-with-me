@@ -1,4 +1,5 @@
 package ru.practicum.compilation.model;
+
 import lombok.*;
 import ru.practicum.event.model.Event;
 

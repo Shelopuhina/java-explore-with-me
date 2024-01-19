@@ -6,6 +6,7 @@ import ru.practicum.eventRequest.model.EventRequestStatus;
 import ru.practicum.eventRequest.model.ParticipationRequest;
 
 import java.util.List;
+
 @Repository
 public interface EventRequestRepository extends JpaRepository<ParticipationRequest, Integer> {
     List<ParticipationRequest> findByRequesterId(Integer requesterId);

@@ -58,7 +58,6 @@ public class StatsClient {
         }
 
 
-
         return get(urlBuilder.build().toUriString(), null);
     }
 

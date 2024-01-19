@@ -1,14 +1,11 @@
 package ru.practicum.event.model.dto;
 
 import ru.practicum.category.model.Category;
-import ru.practicum.category.model.dto.CategoryMapper;
 import ru.practicum.event.model.Event;
 import ru.practicum.event.model.EventState;
 import ru.practicum.event.model.Location;
 import ru.practicum.user.model.User;
-import ru.practicum.user.model.dto.UserMapper;
 
-import java.time.LocalDateTime;
 
 import static ru.practicum.category.model.dto.CategoryMapper.categoryToCategoryDto;
 import static ru.practicum.user.model.dto.UserMapper.userToShortDto;

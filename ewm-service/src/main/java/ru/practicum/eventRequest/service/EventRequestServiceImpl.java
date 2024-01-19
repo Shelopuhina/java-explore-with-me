@@ -1,4 +1,5 @@
 package ru.practicum.eventRequest.service;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,13 +19,10 @@ import ru.practicum.exceptions.IncorrectOperationException;
 import ru.practicum.user.model.User;
 import ru.practicum.user.repository.UserRepository;
 
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
-
 
 @RequiredArgsConstructor
 @Service

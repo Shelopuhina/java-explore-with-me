@@ -11,6 +11,7 @@ import ru.practicum.event.model.Event;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+
 @Repository
 public interface EventRepository extends JpaRepository<Event, Integer> {
     Optional<Event> findByIdAndState(Integer eventId, EventState state);

@@ -20,14 +20,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-
 @Service
 @Transactional(readOnly = true)
 public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository categoryRepository;
     private final EventRepository repository;
+
     @Autowired
-    public CategoryServiceImpl(CategoryRepository categoryRepository,EventRepository repository) {
+    public CategoryServiceImpl(CategoryRepository categoryRepository, EventRepository repository) {
         this.categoryRepository = categoryRepository;
         this.repository = repository;
     }
