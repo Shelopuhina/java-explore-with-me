@@ -20,8 +20,8 @@ import java.util.*;
 public class StatsClient {
     private final RestTemplate rest;
     private final String asd = "http://localhost:9090";
-    private final static String FORMAT = "yyyy-MM-dd HH:mm:ss";
-    private final static DateTimeFormatter formatter = DateTimeFormatter.ofPattern(FORMAT);
+    private final String FORMAT = "yyyy-MM-dd HH:mm:ss";
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(FORMAT);
 
 
     @Autowired
