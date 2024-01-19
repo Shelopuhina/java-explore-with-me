@@ -15,11 +15,12 @@ public class ErrorHandler {
     public ErrorResponse handleThrowable(final Throwable e) {
         return new ErrorResponse(e.getMessage());
     }
-@Getter
-@AllArgsConstructor
-@RequiredArgsConstructor
-public class ErrorResponse {
-    private final String error;
-    private String description;
-}
+
+    @Getter
+    @AllArgsConstructor
+    @RequiredArgsConstructor
+    public class ErrorResponse {
+        private final String error;
+        private String description;
+    }
 }

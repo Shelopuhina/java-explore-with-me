@@ -9,8 +9,6 @@ import ru.practicum.repository.StatsRepository;
 import ru.practicum.statsDto.ViewStatRequestDto;
 import ru.practicum.statsDto.ViewStatResponseDto;
 
-
-import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
