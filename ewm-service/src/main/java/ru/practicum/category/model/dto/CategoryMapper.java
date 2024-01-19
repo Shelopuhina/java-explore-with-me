@@ -6,21 +6,21 @@ public class CategoryMapper {
     public static Category categoryFromNewCategoryDto(NewCategoryDto newCategoryDto) {
         return Category.builder()
                 .id(null)
-                .name(newCategoryDto.getName()).
-                build();
+                .name(newCategoryDto.getName())
+                .build();
     }
 
     public static Category categoryFromCategoryDto(CategoryDto categoryDto) {
         return Category.builder()
                 .id(categoryDto.getId())
-                .name(categoryDto.getName()).
-                build();
+                .name(categoryDto.getName())
+                .build();
     }
 
     public static CategoryDto categoryToCategoryDto(Category category) {
         return CategoryDto.builder()
                 .id(category.getId())
-                .name(category.getName()).
-                build();
+                .name(category.getName())
+                .build();
     }
 }
