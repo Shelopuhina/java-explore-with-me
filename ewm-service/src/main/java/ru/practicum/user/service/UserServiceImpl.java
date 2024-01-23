@@ -27,9 +27,17 @@ public class UserServiceImpl implements UserService {
     public List<UserDto> getUsers(List<Integer> ids, Integer from, Integer size) {
         int page = from / size;
         Pageable pageable = PageRequest.of(page, size, Sort.by("id"));
-        return repository.findUsers(ids, pageable).stream()
-                .map(UserMapper::userToUserDto)
-                .collect(Collectors.toList());
+        if (ids == null) {
+            List<UserDto> res2 = repository.findAll(pageable).getContent().stream()
+                    .map(UserMapper::userToUserDto)
+                    .collect(Collectors.toList());
+            return res2;
+        } else {
+            List<UserDto> res = repository.findByIdIn(ids, pageable).stream()
+                    .map(UserMapper::userToUserDto)
+                    .collect(Collectors.toList());
+            return res;
+        }
     }
 
     @Override

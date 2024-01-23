@@ -1,12 +1,14 @@
 package ru.practicum.exceptions;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
 
 @RequiredArgsConstructor
+@Getter
 public class ApiError {
     private final StackTraceElement[] errors;
     private final String message;

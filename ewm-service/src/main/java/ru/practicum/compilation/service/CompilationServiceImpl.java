@@ -36,9 +36,10 @@ public class CompilationServiceImpl implements CompilationService {
     public List<CompilationDto> getCompilations(Boolean pinned, Integer from, Integer size) {
         int page = from / size;
         Pageable pageable = PageRequest.of(page, size, Sort.by("id"));
-        return compilationRepository.findByPinned(pinned, pageable).stream()
+        List<CompilationDto> res =  compilationRepository.findAllByPinned(pinned, pageable).stream()
                 .map(CompilationMapper::compilationToDto)
                 .collect(Collectors.toList());
+        return res;
     }
 
     @Override
