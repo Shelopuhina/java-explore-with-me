@@ -65,6 +65,7 @@ public class EventMapper {
                 .publishedOn(null)
                 .build();
     }
+
     public static EventShortDto eventToVeryShortDto(Event event) {
         return EventShortDto.builder()
                 .id(event.getId())
