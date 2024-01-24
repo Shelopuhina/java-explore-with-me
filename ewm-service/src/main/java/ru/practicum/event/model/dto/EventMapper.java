@@ -65,4 +65,15 @@ public class EventMapper {
                 .publishedOn(null)
                 .build();
     }
+    public static EventShortDto eventToVeryShortDto(Event event) {
+        return EventShortDto.builder()
+                .id(event.getId())
+                .initiator(userToShortDto(event.getInitiator()))
+                .annotation(event.getAnnotation())
+                .category(categoryToCategoryDto(event.getCategory()))
+                .eventDate(event.getEventDate())
+                .paid(event.isPaid())
+                .title(event.getTitle())
+                .build();
+    }
 }

@@ -20,7 +20,6 @@ import java.util.*;
 public class StatsClient {
     private final RestTemplate rest;
     private final String asd = "http://stats-server:9090";
-
     private final String format = "yyyy-MM-dd HH:mm:ss";
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
 
