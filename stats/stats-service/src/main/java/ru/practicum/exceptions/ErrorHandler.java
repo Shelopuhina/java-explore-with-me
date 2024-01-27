@@ -19,7 +19,7 @@ public class ErrorHandler {
     @Getter
     @AllArgsConstructor
     @RequiredArgsConstructor
-    public class ErrorResponse {
+    public static class ErrorResponse {
         private final String error;
         private String description;
     }

@@ -35,36 +35,34 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public CommentDto editComment(Integer userId, Integer commentId, CommentDto commentDto) {
-        User commentator = userRepository.findById(userId)
-                .orElseThrow(() -> new EntityNotFoundException("Пользователь с id=" + userId + " не найден"));
-        Comment comment = commentRepository.findById(commentId)
-                .orElseThrow(() -> new EntityNotFoundException("Комментарий с id=" + commentId + " не найден"));
-        if (!comment.getCommentator().getId().equals(commentator.getId())) {
-            throw new IncorrectOperationException("Пользователь id= " + userId + " не является владельцем комментария id=" + commentId);
-        }
+        Comment comment = checkMethod(userId,commentId);
         Comment edited = CommentMapper.comentDtoUpdateComment(comment, commentDto);
         return CommentMapper.commentToCommentDto(edited);
     }
 
     @Override
     public void removeComment(Integer userId, Integer commentId) {
-        User commentator = userRepository.findById(userId)
-                .orElseThrow(() -> new EntityNotFoundException("Пользователь с id=" + userId + " не найден"));
-        Comment comment = commentRepository.findById(commentId)
-                .orElseThrow(() -> new EntityNotFoundException("Комментарий с id=" + commentId + " не найден"));
-        if (!comment.getCommentator().getId().equals(commentator.getId())) {
-            throw new IncorrectOperationException("Пользователь id= " + userId + " не является владельцем комментария id=" + commentId);
-        }
+        Comment comment = checkMethod(userId,commentId);
         commentRepository.delete(comment);
-    }
+        }
 
+
+public Comment checkMethod(Integer userId, Integer commentId) {
+    User commentator = userRepository.findById(userId)
+            .orElseThrow(() -> new EntityNotFoundException("Пользователь с id=" + userId + " не найден"));
+    Comment comment = commentRepository.findById(commentId)
+            .orElseThrow(() -> new EntityNotFoundException("Комментарий с id=" + commentId + " не найден"));
+    if (!comment.getCommentator().getId().equals(commentator.getId())) {
+        throw new IncorrectOperationException("Пользователь id= " + userId + " не является владельцем комментария id=" + commentId);
+    }
+    return comment;
+}
     @Override
     public List<CommentDto> getAllCommentByEvent(Integer eventId) {
         Event event = eventRepository.findById(eventId)
                 .orElseThrow(() -> new EntityNotFoundException("Событие с id=" + eventId + " не найдено"));
-        List<CommentDto> commentsOfEvent = commentRepository.findAllByEventId(eventId).stream()
+        return commentRepository.findAllByEventId(eventId).stream()
                 .map(CommentMapper::commentToCommentDto)
                 .collect(Collectors.toList());
-        return commentsOfEvent;
     }
 }
